@@ -10,13 +10,13 @@ def make_heatmap(input_df, input_y, input_x, input_color, cmap):
     fig = px.imshow(
         heatmap_data,
         color_continuous_scale=cmap,
-        labels={"color": "Persentase Data"},
+        labels={"color": "Persentase Data (%)"},
     )
     fig.update_layout(
         title="Heatmap Interaktif",
         xaxis_title=input_x,
         yaxis_title=input_y,
-        coloraxis_colorbar=dict(title="Persentase Data"),
+        coloraxis_colorbar=dict(title="Persentase Data (%)"),
     )
 
     # Use Streamlit to display the heatmap
