@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-def make_heatmap_year(input_df, input_y, input_x, input_color, cmap):
+def make_heatmap_year(input_df, input_y, input_x, input_color, cmap, input_title):
     # Pivot the data to create a matrix for the heatmap
     heatmap_data = input_df.pivot(index=input_y, columns=input_x, values=input_color)
 
@@ -13,7 +13,7 @@ def make_heatmap_year(input_df, input_y, input_x, input_color, cmap):
         labels={"color": "Persentase Data (%)"},
     )
     fig.update_layout(
-        title="Heatmap Interaktif",
+        title=input_title,
         xaxis_title=input_x,
         yaxis_title=input_y,
         xaxis=dict(
@@ -26,7 +26,7 @@ def make_heatmap_year(input_df, input_y, input_x, input_color, cmap):
     # Use Streamlit to display the heatmap
     st.plotly_chart(fig)
 
-def make_heatmap_month(input_df, input_y, input_x, input_color, cmap):
+def make_heatmap_month(input_df, input_y, input_x, input_color, cmap, input_title):
     # Pivot the data to create a matrix for the heatmap
     heatmap_data = input_df.pivot(index=input_y, columns=input_x, values=input_color)
 
@@ -37,7 +37,7 @@ def make_heatmap_month(input_df, input_y, input_x, input_color, cmap):
         labels={"color": "Persentase Data (%)"},
     )
     fig.update_layout(
-        title="Heatmap Interaktif",
+        title=input_title,
         xaxis_title=input_x,
         yaxis_title=input_y,
         # xaxis=dict(
@@ -91,7 +91,8 @@ def main():
                 input_y='Station',
                 input_x='Year',
                 input_color='Value',
-                cmap='RdYlGn'
+                cmap='RdYlGn',
+                input_title="Ketersediaan Data Petir LD2000 (LDC)"
             )
         except FileNotFoundError:
             st.error("File 'petir-ld2000-ldc-year.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -112,7 +113,8 @@ def main():
                 input_y='Station',
                 input_x='Month',
                 input_color='Value',
-                cmap='RdYlGn'  # Adjust the color theme if needed
+                cmap='RdYlGn',  # Adjust the color theme if needed
+                input_title="Ketersediaan Data Petir LD2000 (LDC)"
             )
         except FileNotFoundError:
             st.error("File 'magnet-lemi-month.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -134,7 +136,8 @@ def main():
                 input_y='Station',
                 input_x='Year',
                 input_color='Value',
-                cmap='RdYlGn'
+                cmap='RdYlGn',
+                input_title="Ketersediaan Data Petir Nexstorm (NEX)"
             )
         except FileNotFoundError:
             st.error("File 'petir-nexstorm-nex-year.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -155,7 +158,8 @@ def main():
                 input_y='Station',
                 input_x='Month',
                 input_color='Value',
-                cmap='RdYlGn'  # Adjust the color theme if needed
+                cmap='RdYlGn',  # Adjust the color theme if needed
+                input_title="Ketersediaan Data Petir Nexstorm (NEX)"
             )
         except FileNotFoundError:
             st.error("File 'petir-nexstorm-nex-month.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -177,7 +181,8 @@ def main():
                 input_y='Station',
                 input_x='Year',
                 input_color='Value',
-                cmap='RdYlGn'
+                cmap='RdYlGn',
+                input_title="Ketersediaan Data Magnet (LEMI)"
             )
         except FileNotFoundError:
             st.error("File 'magnet-lemi-year.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -198,7 +203,8 @@ def main():
                 input_y='Station',
                 input_x='Month',
                 input_color='Value',
-                cmap='RdYlGn'  # Adjust the color theme if needed
+                cmap='RdYlGn',  # Adjust the color theme if needed
+                input_title="Ketersediaan Data Magnet (LEMI)"
             )
         except FileNotFoundError:
             st.error("File 'magnet-lemi-month.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -220,7 +226,8 @@ def main():
                 input_y='Station',
                 input_x='Year',
                 input_color='Value',
-                cmap='RdYlGn'
+                cmap='RdYlGn',
+                input_title="Ketersediaan Data Percepatan Tanah (E-W)"
             )
         except FileNotFoundError:
             st.error("File 'percepatantanah-ew-year.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -241,7 +248,8 @@ def main():
                 input_y='Station',
                 input_x='Month',
                 input_color='Value',
-                cmap='RdYlGn'  # Adjust the color theme if needed
+                cmap='RdYlGn',  # Adjust the color theme if needed
+                input_title="Ketersediaan Data Percepatan Tanah (E-W)"
             )
         except FileNotFoundError:
             st.error("File 'percepatantanah-ew-month.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -263,7 +271,8 @@ def main():
                 input_y='Station',
                 input_x='Year',
                 input_color='Value',
-                cmap='RdYlGn'
+                cmap='RdYlGn',
+                input_title="Ketersediaan Data Intensitas Gempa (E-W)"
             )
         except FileNotFoundError:
             st.error("File 'intensitasgempa-ew-year.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -284,7 +293,8 @@ def main():
                 input_y='Station',
                 input_x='Month',
                 input_color='Value',
-                cmap='RdYlGn'  # Adjust the color theme if needed
+                cmap='RdYlGn',  # Adjust the color theme if needed
+                input_title="Ketersediaan Data Intensitas Gempa (E-W)"
             )
         except FileNotFoundError:
             st.error("File 'intensitasgempa-ew-month.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -306,7 +316,8 @@ def main():
                 input_y='Station',
                 input_x='Year',
                 input_color='Value',
-                cmap='RdYlGn'
+                cmap='RdYlGn',
+                input_title="Ketersediaan Data Gempa (E-W)"
             )
         except FileNotFoundError:
             st.error("File 'gempabumi-ew-year.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
@@ -327,7 +338,8 @@ def main():
                 input_y='Station',
                 input_x='Month',
                 input_color='Value',
-                cmap='RdYlGn'  # Adjust the color theme if needed
+                cmap='RdYlGn',  # Adjust the color theme if needed
+                input_title="Ketersediaan Data Gempa (E-W)"
             )
         except FileNotFoundError:
             st.error("File 'gempabumi-ew-month.csv' tidak ditemukan. Pastikan file tersedia di direktori yang sama dengan aplikasi ini.")
