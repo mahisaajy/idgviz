@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-def make_heatmap(input_df, input_y, input_x, input_color, cmap):
+def make_heatmap_year(input_df, input_y, input_x, input_color, cmap):
     # Pivot the data to create a matrix for the heatmap
     heatmap_data = input_df.pivot(index=input_y, columns=input_x, values=input_color)
 
@@ -16,6 +16,34 @@ def make_heatmap(input_df, input_y, input_x, input_color, cmap):
         title="Heatmap Interaktif",
         xaxis_title=input_x,
         yaxis_title=input_y,
+        xaxis=dict(
+            tickmode="linear",  # Tampilkan semua nilai pada sumbu X
+            dtick=1             # Interval tick (misalnya 1 tahun)
+        ),
+        coloraxis_colorbar=dict(title="Persentase Data (%)"),
+    )
+
+    # Use Streamlit to display the heatmap
+    st.plotly_chart(fig)
+
+def make_heatmap_month(input_df, input_y, input_x, input_color, cmap):
+    # Pivot the data to create a matrix for the heatmap
+    heatmap_data = input_df.pivot(index=input_y, columns=input_x, values=input_color)
+
+    # Create the heatmap using Plotly
+    fig = px.imshow(
+        heatmap_data,
+        color_continuous_scale=cmap,
+        labels={"color": "Persentase Data (%)"},
+    )
+    fig.update_layout(
+        title="Heatmap Interaktif",
+        xaxis_title=input_x,
+        yaxis_title=input_y,
+        # xaxis=dict(
+        #     tickmode="linear",  # Tampilkan semua nilai pada sumbu X
+        #     dtick=3             # Interval tick (misalnya 1 tahun)
+        # ),
         coloraxis_colorbar=dict(title="Persentase Data (%)"),
     )
 
@@ -58,7 +86,7 @@ def main():
             df_year_melted = df_year.melt(id_vars=['Station'], var_name='Year', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_year(
                 input_df=df_year_melted,
                 input_y='Station',
                 input_x='Year',
@@ -79,7 +107,7 @@ def main():
             df_month_melted = df_month.melt(id_vars=['Station'], var_name='Month', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_month(
                 input_df=df_month_melted,
                 input_y='Station',
                 input_x='Month',
@@ -101,7 +129,7 @@ def main():
             df_year_melted = df_year.melt(id_vars=['Station'], var_name='Year', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_year(
                 input_df=df_year_melted,
                 input_y='Station',
                 input_x='Year',
@@ -122,7 +150,7 @@ def main():
             df_month_melted = df_month.melt(id_vars=['Station'], var_name='Month', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_month(
                 input_df=df_month_melted,
                 input_y='Station',
                 input_x='Month',
@@ -144,7 +172,7 @@ def main():
             df_year_melted = df_year.melt(id_vars=['Station'], var_name='Year', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_year(
                 input_df=df_year_melted,
                 input_y='Station',
                 input_x='Year',
@@ -165,7 +193,7 @@ def main():
             df_month_melted = df_month.melt(id_vars=['Station'], var_name='Month', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_month(
                 input_df=df_month_melted,
                 input_y='Station',
                 input_x='Month',
@@ -187,7 +215,7 @@ def main():
             df_year_melted = df_year.melt(id_vars=['Station'], var_name='Year', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_year(
                 input_df=df_year_melted,
                 input_y='Station',
                 input_x='Year',
@@ -208,7 +236,7 @@ def main():
             df_month_melted = df_month.melt(id_vars=['Station'], var_name='Month', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_month(
                 input_df=df_month_melted,
                 input_y='Station',
                 input_x='Month',
@@ -230,7 +258,7 @@ def main():
             df_year_melted = df_year.melt(id_vars=['Station'], var_name='Year', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_year(
                 input_df=df_year_melted,
                 input_y='Station',
                 input_x='Year',
@@ -251,7 +279,7 @@ def main():
             df_month_melted = df_month.melt(id_vars=['Station'], var_name='Month', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_month(
                 input_df=df_month_melted,
                 input_y='Station',
                 input_x='Month',
@@ -273,7 +301,7 @@ def main():
             df_year_melted = df_year.melt(id_vars=['Station'], var_name='Year', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_year(
                 input_df=df_year_melted,
                 input_y='Station',
                 input_x='Year',
@@ -294,7 +322,7 @@ def main():
             df_month_melted = df_month.melt(id_vars=['Station'], var_name='Month', value_name='Value')
 
             # Create heatmap
-            make_heatmap(
+            make_heatmap_month(
                 input_df=df_month_melted,
                 input_y='Station',
                 input_x='Month',
